@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "fdfullscreenpopgesture",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yavl/FDFullscreenPopGesture",
+      "state" : {
+        "revision" : "2ea3ae287e194c62a882d1cb2c5bfd57701ea509",
+        "version" : "1.1.0"
+      }
+    },
+    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",

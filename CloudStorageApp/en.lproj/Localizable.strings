@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  CloudStorageApp
+
+  Created by Vladislav Nikolaev on 12.08.2022.
+  
+*/
+
+welcome.message = "CloudStorageApp - an app for storing and managing files in the cloud service.";
+welcome.loginButton = "Sign in";
+welcome.registerButton = "Create new account";
+
+login.title = "Log in";
+login.email.placeholder = "Email address";
+login.password.placeholder = "Password";
+login.loginButton = "Log in";
+
+register.title = "Create an account";
+register.email.placeholder = "Email address";
+register.password.placeholder = "New password";
+register.registerButton = "Sign up";

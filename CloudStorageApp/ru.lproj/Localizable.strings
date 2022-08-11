@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  CloudStorageApp
+
+  Created by Vladislav Nikolaev on 12.08.2022.
+  
+*/
+
+welcome.message = "CloudStorageApp - это приложение для хранения и управления файлами в облачном сервисе.";
+welcome.loginButton = "Войти";
+welcome.registerButton = "Создать новый аккаунт";
+
+login.title = "Войти в аккаунт";
+login.email.placeholder = "Адрес электронной почты";
+login.password.placeholder = "Пароль";
+login.loginButton = "Войти";
+
+register.title = "Создать аккаунт";
+register.email.placeholder = "Адрес электронной почты";
+register.password.placeholder = "Новый пароль";
+register.registerButton = "Создать аккаунт";
