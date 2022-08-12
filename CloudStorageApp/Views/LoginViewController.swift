@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import FirebaseAuth
+import SkyFloatingLabelTextField
 
 class LoginViewController: UIViewController {
     
@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
+    private let emailTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.keyboardType = .emailAddress
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
+    private let passwordTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.isSecureTextEntry = true
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -51,29 +51,13 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    private var handle: AuthStateDidChangeListenerHandle?
+    private let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setupLayout()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let handle = handle {
-            Auth.auth().removeStateDidChangeListener(handle)
-        }
     }
     
     private func setupViews() {
@@ -87,6 +71,8 @@ class LoginViewController: UIViewController {
         stackView.addArrangedSubview(loginButton)
         
         title = NSLocalizedString("login.title", comment: "log in")
+        
+        loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -101,5 +87,9 @@ class LoginViewController: UIViewController {
             make.width.equalToSuperview().offset(-20)
             make.height.equalTo(height)
         }
+    }
+    
+    @objc private func loginTapped() {
+        
     }
 }

@@ -7,12 +7,11 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 class WelcomeViewController: UIViewController {
     
     var router: WelcomeRouter?
-    
-    private let configurator: WelcomeConfigurator
     
     private let helloLabel: UILabel = {
         let label = UILabel()
@@ -36,25 +35,31 @@ class WelcomeViewController: UIViewController {
         return button
     }()
     
-    init() {
-        self.configurator = WelcomeConfiguratorImplementation()
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        self.configurator = WelcomeConfiguratorImplementation()
-        
-        super.init(coder: coder)
-    }
+    private var handle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configurator.configure(welcomeViewController: self)
+        router = WelcomeRouter(sourceViewController: self)
         
         setupViews()
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
     }
     
     private func setupViews() {

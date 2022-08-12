@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5701B1328A6BADF001DE227 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1228A6BADF001DE227 /* RegisterViewModel.swift */; };
+		F5701B1628A6BC2E001DE227 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1528A6BC2E001DE227 /* AuthorizationService.swift */; };
+		F5701B1828A6BDED001DE227 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1728A6BDED001DE227 /* RegisterRouter.swift */; };
+		F5701B1B28A6C0C0001DE227 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = F5701B1A28A6C0C0001DE227 /* SkyFloatingLabelTextField */; };
+		F5701B1D28A6C1F0001DE227 /* FirebaseAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1C28A6C1F0001DE227 /* FirebaseAuthorizationService.swift */; };
+		F5701B1F28A6C22C001DE227 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1E28A6C22C001DE227 /* Profile.swift */; };
+		F5701B2128A6C898001DE227 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B2028A6C898001DE227 /* LoginViewModel.swift */; };
 		F592C23028A55E3E00942F43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F592C23228A55E3E00942F43 /* Localizable.strings */; };
 		F5E3388328A5600500C1A520 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388228A5600500C1A520 /* LoginViewController.swift */; };
 		F5E3388628A5613C00C1A520 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388528A5613C00C1A520 /* Router.swift */; };
 		F5E3388828A5629100C1A520 /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388728A5629100C1A520 /* WelcomeRouter.swift */; };
-		F5E3388B28A5640000C1A520 /* WelcomeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388A28A5640000C1A520 /* WelcomeConfigurator.swift */; };
 		F5E3388E28A56AA100C1A520 /* FDFullscreenPopGesture in Frameworks */ = {isa = PBXBuildFile; productRef = F5E3388D28A56AA100C1A520 /* FDFullscreenPopGesture */; };
 		F5E3389228A5767300C1A520 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3389128A5767300C1A520 /* RegisterViewController.swift */; };
 		F5E3389C28A579DD00C1A520 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = F5E3389B28A579DD00C1A520 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -49,12 +55,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5701B1228A6BADF001DE227 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		F5701B1528A6BC2E001DE227 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		F5701B1728A6BDED001DE227 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		F5701B1C28A6C1F0001DE227 /* FirebaseAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthorizationService.swift; sourceTree = "<group>"; };
+		F5701B1E28A6C22C001DE227 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F5701B2028A6C898001DE227 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F592C23128A55E3E00942F43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F592C23328A55E5900942F43 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5E3388228A5600500C1A520 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5E3388528A5613C00C1A520 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F5E3388728A5629100C1A520 /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
-		F5E3388A28A5640000C1A520 /* WelcomeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeConfigurator.swift; sourceTree = "<group>"; };
 		F5E3389128A5767300C1A520 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F5FD7E0A28A52DFF00C8FCD6 /* CloudStorageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudStorageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5FD7E0D28A52DFF00C8FCD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +90,7 @@
 			files = (
 				F5E338A028A579DD00C1A520 /* FirebaseFirestoreSwift in Frameworks */,
 				F5FD7E3F28A52E3B00C8FCD6 /* SnapKit in Frameworks */,
+				F5701B1B28A6C0C0001DE227 /* SkyFloatingLabelTextField in Frameworks */,
 				F5E3389C28A579DD00C1A520 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				F5E3388E28A56AA100C1A520 /* FDFullscreenPopGesture in Frameworks */,
 				F5E3389E28A579DD00C1A520 /* FirebaseAuth in Frameworks */,
@@ -103,21 +115,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F5701B1428A6BC1B001DE227 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F5701B1528A6BC2E001DE227 /* AuthorizationService.swift */,
+				F5701B1C28A6C1F0001DE227 /* FirebaseAuthorizationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F5E3388428A5612B00C1A520 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
 				F5E3388528A5613C00C1A520 /* Router.swift */,
 				F5E3388728A5629100C1A520 /* WelcomeRouter.swift */,
+				F5701B1728A6BDED001DE227 /* RegisterRouter.swift */,
 			);
 			path = Routers;
-			sourceTree = "<group>";
-		};
-		F5E3388928A563DB00C1A520 /* Configurators */ = {
-			isa = PBXGroup;
-			children = (
-				F5E3388A28A5640000C1A520 /* WelcomeConfigurator.swift */,
-			);
-			path = Configurators;
 			sourceTree = "<group>";
 		};
 		F5FD7E0128A52DFF00C8FCD6 = {
@@ -147,7 +161,7 @@
 				F5FD7E5428A5479400C8FCD6 /* Views */,
 				F5FD7E5328A5478D00C8FCD6 /* ViewModels */,
 				F5E3388428A5612B00C1A520 /* Routers */,
-				F5E3388928A563DB00C1A520 /* Configurators */,
+				F5701B1428A6BC1B001DE227 /* Services */,
 				F5FD7E0D28A52DFF00C8FCD6 /* AppDelegate.swift */,
 				F5FD7E0F28A52DFF00C8FCD6 /* SceneDelegate.swift */,
 				F5FD7E1328A52DFF00C8FCD6 /* Main.storyboard */,
@@ -180,6 +194,8 @@
 		F5FD7E5328A5478D00C8FCD6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F5701B1228A6BADF001DE227 /* RegisterViewModel.swift */,
+				F5701B2028A6C898001DE227 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -197,6 +213,7 @@
 		F5FD7E5528A5479900C8FCD6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F5701B1E28A6C22C001DE227 /* Profile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,6 +241,7 @@
 				F5E3389D28A579DD00C1A520 /* FirebaseAuth */,
 				F5E3389F28A579DD00C1A520 /* FirebaseFirestoreSwift */,
 				F5E338A128A579DD00C1A520 /* FirebaseStorage */,
+				F5701B1A28A6C0C0001DE227 /* SkyFloatingLabelTextField */,
 			);
 			productName = CloudStorageApp;
 			productReference = F5FD7E0A28A52DFF00C8FCD6 /* CloudStorageApp.app */;
@@ -302,6 +320,7 @@
 				F5FD7E3D28A52E3B00C8FCD6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				F5E3388C28A56AA100C1A520 /* XCRemoteSwiftPackageReference "FDFullscreenPopGesture" */,
 				F5E3389A28A579DD00C1A520 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F5701B1928A6C0C0001DE227 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
 			);
 			productRefGroup = F5FD7E0B28A52DFF00C8FCD6 /* Products */;
 			projectDirPath = "";
@@ -349,13 +368,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5E3388328A5600500C1A520 /* LoginViewController.swift in Sources */,
+				F5701B1F28A6C22C001DE227 /* Profile.swift in Sources */,
+				F5701B1628A6BC2E001DE227 /* AuthorizationService.swift in Sources */,
 				F5FD7E1228A52DFF00C8FCD6 /* WelcomeViewController.swift in Sources */,
 				F5E3388628A5613C00C1A520 /* Router.swift in Sources */,
+				F5701B1828A6BDED001DE227 /* RegisterRouter.swift in Sources */,
 				F5E3389228A5767300C1A520 /* RegisterViewController.swift in Sources */,
 				F5E3388828A5629100C1A520 /* WelcomeRouter.swift in Sources */,
+				F5701B2128A6C898001DE227 /* LoginViewModel.swift in Sources */,
 				F5FD7E0E28A52DFF00C8FCD6 /* AppDelegate.swift in Sources */,
 				F5FD7E1028A52DFF00C8FCD6 /* SceneDelegate.swift in Sources */,
-				F5E3388B28A5640000C1A520 /* WelcomeConfigurator.swift in Sources */,
+				F5701B1328A6BADF001DE227 /* RegisterViewModel.swift in Sources */,
+				F5701B1D28A6C1F0001DE227 /* FirebaseAuthorizationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +734,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F5701B1928A6C0C0001DE227 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.0;
+			};
+		};
 		F5E3388C28A56AA100C1A520 /* XCRemoteSwiftPackageReference "FDFullscreenPopGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yavl/FDFullscreenPopGesture";
@@ -737,6 +769,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F5701B1A28A6C0C0001DE227 /* SkyFloatingLabelTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5701B1928A6C0C0001DE227 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
+			productName = SkyFloatingLabelTextField;
+		};
 		F5E3388D28A56AA100C1A520 /* FDFullscreenPopGesture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F5E3388C28A56AA100C1A520 /* XCRemoteSwiftPackageReference "FDFullscreenPopGesture" */;

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import FirebaseAuth
+import SkyFloatingLabelTextField
 
 class RegisterViewController: UIViewController {
     
@@ -26,8 +26,8 @@ class RegisterViewController: UIViewController {
         return stackView
     }()
     
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
+    private let emailTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.keyboardType = .emailAddress
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -35,8 +35,8 @@ class RegisterViewController: UIViewController {
         return textField
     }()
     
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
+    private let passwordTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.isSecureTextEntry = true
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -44,36 +44,20 @@ class RegisterViewController: UIViewController {
         return textField
     }()
     
-    private let loginButton: UIButton = {
+    private let registerButton: UIButton = {
         let button = UIButton(type: .system)
         let loginTitle = NSLocalizedString("register.registerButton", comment: "sign up")
         button.setTitle(loginTitle, for: .normal)
         return button
     }()
     
-    private var handle: AuthStateDidChangeListenerHandle?
+    private let viewModel = RegisterViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setupLayout()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let handle = handle {
-            Auth.auth().removeStateDidChangeListener(handle)
-        }
     }
     
     private func setupViews() {
@@ -84,9 +68,11 @@ class RegisterViewController: UIViewController {
         
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(passwordTextField)
-        stackView.addArrangedSubview(loginButton)
+        stackView.addArrangedSubview(registerButton)
         
         title = NSLocalizedString("register.title", comment: "create new account")
+        
+        registerButton.addTarget(self, action: #selector(registerTapped), for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -101,5 +87,11 @@ class RegisterViewController: UIViewController {
             make.width.equalToSuperview().offset(-20)
             make.height.equalTo(height)
         }
+    }
+    
+    @objc private func registerTapped() {
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        viewModel.registerButtonTapped(email: email, password: password)
     }
 }
