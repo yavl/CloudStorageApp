@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum WelcomeRouterDestination {
-    case login, register
+    case login, register, storage
 }
 
 protocol WelcomeRouter: Router {
@@ -30,6 +30,9 @@ class WelcomeRouterImplementation: WelcomeRouter {
             sourceViewController?.navigationController?.pushViewController(vc, animated: true)
         case .register:
             let vc = RegisterViewController()
+            sourceViewController?.navigationController?.pushViewController(vc, animated: true)
+        case .storage:
+            let vc = StorageViewController()
             sourceViewController?.navigationController?.pushViewController(vc, animated: true)
         }
     }

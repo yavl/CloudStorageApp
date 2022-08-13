@@ -35,6 +35,14 @@ class WelcomeViewController: UIViewController {
         return button
     }()
     
+    private let storageButton: UIButton = {
+        let button = UIButton(type: .system)
+        let storageTitle = NSLocalizedString("welcome.storageButton", comment: "browse files")
+        button.setTitle(storageTitle, for: .normal)
+        button.isHidden = true
+        return button
+    }()
+    
     private let viewModel = WelcomeViewModel()
     private var handle: AuthStateDidChangeListenerHandle?
     
@@ -91,9 +99,11 @@ class WelcomeViewController: UIViewController {
         view.addSubview(helloLabel)
         view.addSubview(loginButton)
         view.addSubview(registerButton)
+        view.addSubview(storageButton)
         
         loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerTapped), for: .touchUpInside)
+        storageButton.addTarget(self, action: #selector(storageTapped), for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -114,6 +124,12 @@ class WelcomeViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.size.equalTo(loginButton)
         }
+        
+        storageButton.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(loginButton)
+        }
     }
     
     private func bind() {
@@ -121,12 +137,14 @@ class WelcomeViewController: UIViewController {
             guard let viewState = viewState else { return }
             
             self.registerButton.isHidden = false
+            self.storageButton.isHidden = true
             switch viewState {
             case .initial:
                 self.loginButtonState = .login
             case .loggedIn:
                 self.loginButtonState = .logout
                 self.registerButton.isHidden = true
+                self.storageButton.isHidden = false
             case .loggedOut:
                 self.loginButtonState = .login
             }
@@ -138,16 +156,16 @@ class WelcomeViewController: UIViewController {
         case .login:
             router?.navigate(to: .login)
         case .logout:
-            do {
-                try Auth.auth().signOut()
-            } catch let error {
-                print("failed to log out: \(error.localizedDescription)")
-            }
+            viewModel.logout()
         }
     }
     
     @objc private func registerTapped() {
         router?.navigate(to: .register)
+    }
+    
+    @objc private func storageTapped() {
+        router?.navigate(to: .storage)
     }
 }
 

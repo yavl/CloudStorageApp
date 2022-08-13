@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F547084928A7E7CF00E97742 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547084828A7E7CF00E97742 /* StorageViewController.swift */; };
+		F547084B28A7E84500E97742 /* StorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547084A28A7E84500E97742 /* StorageViewModel.swift */; };
+		F547084D28A7E89100E97742 /* StorageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547084C28A7E89100E97742 /* StorageRouter.swift */; };
 		F5471D9428A7855C00085199 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5471D9328A7855C00085199 /* Observable.swift */; };
 		F5471D9628A7883900085199 /* WelcomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5471D9528A7883900085199 /* WelcomeViewState.swift */; };
-		F5471D9828A791E800085199 /* LoginRouterImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5471D9728A791E800085199 /* LoginRouterImplementation.swift */; };
+		F5471D9828A791E800085199 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5471D9728A791E800085199 /* LoginRouter.swift */; };
 		F54CF54C28A774DC00A5051A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CF54B28A774DC00A5051A /* Profile.swift */; };
 		F54CF54E28A7760200A5051A /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CF54D28A7760200A5051A /* WelcomeViewModel.swift */; };
 		F5701B1328A6BADF001DE227 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1228A6BADF001DE227 /* RegisterViewModel.swift */; };
 		F5701B1628A6BC2E001DE227 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1528A6BC2E001DE227 /* AuthorizationService.swift */; };
-		F5701B1828A6BDED001DE227 /* RegisterRouterImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1728A6BDED001DE227 /* RegisterRouterImplementation.swift */; };
+		F5701B1828A6BDED001DE227 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1728A6BDED001DE227 /* RegisterRouter.swift */; };
 		F5701B1B28A6C0C0001DE227 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = F5701B1A28A6C0C0001DE227 /* SkyFloatingLabelTextField */; };
 		F5701B1D28A6C1F0001DE227 /* FirebaseAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1C28A6C1F0001DE227 /* FirebaseAuthorizationService.swift */; };
 		F5701B1F28A6C22C001DE227 /* FirebaseProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1E28A6C22C001DE227 /* FirebaseProfile.swift */; };
@@ -22,7 +25,7 @@
 		F592C23028A55E3E00942F43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F592C23228A55E3E00942F43 /* Localizable.strings */; };
 		F5E3388328A5600500C1A520 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388228A5600500C1A520 /* LoginViewController.swift */; };
 		F5E3388628A5613C00C1A520 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388528A5613C00C1A520 /* Router.swift */; };
-		F5E3388828A5629100C1A520 /* WelcomeRouterImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388728A5629100C1A520 /* WelcomeRouterImplementation.swift */; };
+		F5E3388828A5629100C1A520 /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388728A5629100C1A520 /* WelcomeRouter.swift */; };
 		F5E3388E28A56AA100C1A520 /* FDFullscreenPopGesture in Frameworks */ = {isa = PBXBuildFile; productRef = F5E3388D28A56AA100C1A520 /* FDFullscreenPopGesture */; };
 		F5E3389228A5767300C1A520 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3389128A5767300C1A520 /* RegisterViewController.swift */; };
 		F5E3389C28A579DD00C1A520 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = F5E3389B28A579DD00C1A520 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -60,14 +63,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F547084828A7E7CF00E97742 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
+		F547084A28A7E84500E97742 /* StorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewModel.swift; sourceTree = "<group>"; };
+		F547084C28A7E89100E97742 /* StorageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRouter.swift; sourceTree = "<group>"; };
 		F5471D9328A7855C00085199 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F5471D9528A7883900085199 /* WelcomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewState.swift; sourceTree = "<group>"; };
-		F5471D9728A791E800085199 /* LoginRouterImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouterImplementation.swift; sourceTree = "<group>"; };
+		F5471D9728A791E800085199 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		F54CF54B28A774DC00A5051A /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F54CF54D28A7760200A5051A /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		F5701B1228A6BADF001DE227 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		F5701B1528A6BC2E001DE227 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
-		F5701B1728A6BDED001DE227 /* RegisterRouterImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouterImplementation.swift; sourceTree = "<group>"; };
+		F5701B1728A6BDED001DE227 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
 		F5701B1C28A6C1F0001DE227 /* FirebaseAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthorizationService.swift; sourceTree = "<group>"; };
 		F5701B1E28A6C22C001DE227 /* FirebaseProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProfile.swift; sourceTree = "<group>"; };
 		F5701B2028A6C898001DE227 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -75,7 +81,7 @@
 		F592C23328A55E5900942F43 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5E3388228A5600500C1A520 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5E3388528A5613C00C1A520 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		F5E3388728A5629100C1A520 /* WelcomeRouterImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouterImplementation.swift; sourceTree = "<group>"; };
+		F5E3388728A5629100C1A520 /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
 		F5E3389128A5767300C1A520 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F5FD7E0A28A52DFF00C8FCD6 /* CloudStorageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudStorageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5FD7E0D28A52DFF00C8FCD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,9 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				F5E3388528A5613C00C1A520 /* Router.swift */,
-				F5E3388728A5629100C1A520 /* WelcomeRouterImplementation.swift */,
-				F5701B1728A6BDED001DE227 /* RegisterRouterImplementation.swift */,
-				F5471D9728A791E800085199 /* LoginRouterImplementation.swift */,
+				F5E3388728A5629100C1A520 /* WelcomeRouter.swift */,
+				F5701B1728A6BDED001DE227 /* RegisterRouter.swift */,
+				F5471D9728A791E800085199 /* LoginRouter.swift */,
+				F547084C28A7E89100E97742 /* StorageRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -226,6 +233,7 @@
 				F5701B1228A6BADF001DE227 /* RegisterViewModel.swift */,
 				F5701B2028A6C898001DE227 /* LoginViewModel.swift */,
 				F54CF54D28A7760200A5051A /* WelcomeViewModel.swift */,
+				F547084A28A7E84500E97742 /* StorageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 				F5E3389128A5767300C1A520 /* RegisterViewController.swift */,
 				F5E3388228A5600500C1A520 /* LoginViewController.swift */,
 				F5FD7E1128A52DFF00C8FCD6 /* WelcomeViewController.swift */,
+				F547084828A7E7CF00E97742 /* StorageViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,17 +411,20 @@
 				F5E3388328A5600500C1A520 /* LoginViewController.swift in Sources */,
 				F54CF54E28A7760200A5051A /* WelcomeViewModel.swift in Sources */,
 				F5701B1F28A6C22C001DE227 /* FirebaseProfile.swift in Sources */,
+				F547084D28A7E89100E97742 /* StorageRouter.swift in Sources */,
 				F5701B1628A6BC2E001DE227 /* AuthorizationService.swift in Sources */,
 				F54CF54C28A774DC00A5051A /* Profile.swift in Sources */,
 				F5FD7E1228A52DFF00C8FCD6 /* WelcomeViewController.swift in Sources */,
+				F547084928A7E7CF00E97742 /* StorageViewController.swift in Sources */,
 				F5E3388628A5613C00C1A520 /* Router.swift in Sources */,
-				F5701B1828A6BDED001DE227 /* RegisterRouterImplementation.swift in Sources */,
+				F5701B1828A6BDED001DE227 /* RegisterRouter.swift in Sources */,
 				F5E3389228A5767300C1A520 /* RegisterViewController.swift in Sources */,
-				F5E3388828A5629100C1A520 /* WelcomeRouterImplementation.swift in Sources */,
+				F5E3388828A5629100C1A520 /* WelcomeRouter.swift in Sources */,
 				F5701B2128A6C898001DE227 /* LoginViewModel.swift in Sources */,
 				F5FD7E0E28A52DFF00C8FCD6 /* AppDelegate.swift in Sources */,
+				F547084B28A7E84500E97742 /* StorageViewModel.swift in Sources */,
 				F5FD7E1028A52DFF00C8FCD6 /* SceneDelegate.swift in Sources */,
-				F5471D9828A791E800085199 /* LoginRouterImplementation.swift in Sources */,
+				F5471D9828A791E800085199 /* LoginRouter.swift in Sources */,
 				F5701B1328A6BADF001DE227 /* RegisterViewModel.swift in Sources */,
 				F5471D9628A7883900085199 /* WelcomeViewState.swift in Sources */,
 				F5701B1D28A6C1F0001DE227 /* FirebaseAuthorizationService.swift in Sources */,

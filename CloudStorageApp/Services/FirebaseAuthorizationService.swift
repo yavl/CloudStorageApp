@@ -38,4 +38,12 @@ class FirebaseAuthorizationService: AuthorizationService {
             completion(profile, nil)
         }
     }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print("failed to log out: \(error.localizedDescription)")
+        }
+    }
 }

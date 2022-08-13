@@ -10,4 +10,5 @@ import Foundation
 protocol AuthorizationService {
     func login(email: String, password: String, completion: @escaping (_ profile: Profile?, _ error: Error?) -> Void)
     func register(email: String, password: String, completion: @escaping (_ profile: Profile?, _ error: Error?) -> Void)
+    func logout()
 }

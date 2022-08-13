@@ -10,6 +10,7 @@ welcome.message = "CloudStorageApp - an app for storing and managing files in th
 welcome.loginButton = "Sign in";
 welcome.logoutButton = "Log out";
 welcome.registerButton = "Create new account";
+welcome.storageButton = "Browse files";
 
 login.title = "Log in";
 login.email.placeholder = "Email address";
@@ -20,3 +21,6 @@ register.title = "Create an account";
 register.email.placeholder = "Email address";
 register.password.placeholder = "New password";
 register.registerButton = "Sign up";
+
+storage.title = "Storage";
+storage.addButton = "Upload file";

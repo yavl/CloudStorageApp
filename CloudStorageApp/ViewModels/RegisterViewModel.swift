@@ -12,10 +12,8 @@ protocol RegisterViewModelProtocol {
 }
 
 class RegisterViewModel: RegisterViewModelProtocol {
-    private let authService = FirebaseAuthorizationService()
-    
     func registerButtonTapped(email: String, password: String, completion: @escaping (Error?) -> Void) {
-        authService.register(email: email, password: password) { profile, error in
+        env.authService.register(email: email, password: password) { profile, error in
             defer {
                 completion(error)
             }

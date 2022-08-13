@@ -12,6 +12,7 @@ protocol WelcomeViewModelProtocol {
     
     func userLoggedIn()
     func userLoggedOut()
+    func logout()
 }
 
 class WelcomeViewModel: WelcomeViewModelProtocol {
@@ -26,5 +27,9 @@ class WelcomeViewModel: WelcomeViewModelProtocol {
         isLoggedIn.value = .loggedOut
 
         print("logged out")
+    }
+    
+    func logout() {
+        env.authService.logout()
     }
 }

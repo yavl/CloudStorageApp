@@ -10,6 +10,7 @@ welcome.message = "CloudStorageApp - это приложение для хран
 welcome.loginButton = "Войти";
 welcome.logoutButton = "Выйти из аккаунта";
 welcome.registerButton = "Создать новый аккаунт";
+welcome.storageButton = "Посмотреть файлы";
 
 login.title = "Войти в аккаунт";
 login.email.placeholder = "Адрес электронной почты";
@@ -20,3 +21,6 @@ register.title = "Создать аккаунт";
 register.email.placeholder = "Адрес электронной почты";
 register.password.placeholder = "Новый пароль";
 register.registerButton = "Создать аккаунт";
+
+storage.title = "Хранилище";
+storage.addButton = "Добавить файл";

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 
 struct Environment {
+    let authService = FirebaseAuthorizationService()
     let profile: Profile = FirebaseProfile()
 }
 
