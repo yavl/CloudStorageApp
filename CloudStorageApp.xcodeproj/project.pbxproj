@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F518225A28A80F8A0018716E /* StorageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F518225928A80F8A0018716E /* StorageItem.swift */; };
+		F518225D28A812160018716E /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F518225C28A812160018716E /* ItemCollectionViewCell.swift */; };
 		F547084928A7E7CF00E97742 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547084828A7E7CF00E97742 /* StorageViewController.swift */; };
 		F547084B28A7E84500E97742 /* StorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547084A28A7E84500E97742 /* StorageViewModel.swift */; };
 		F547084D28A7E89100E97742 /* StorageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547084C28A7E89100E97742 /* StorageRouter.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F518225928A80F8A0018716E /* StorageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageItem.swift; sourceTree = "<group>"; };
+		F518225C28A812160018716E /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F547084828A7E7CF00E97742 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		F547084A28A7E84500E97742 /* StorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewModel.swift; sourceTree = "<group>"; };
 		F547084C28A7E89100E97742 /* StorageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRouter.swift; sourceTree = "<group>"; };
@@ -137,6 +141,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F518225B28A812020018716E /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				F518225C28A812160018716E /* ItemCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		F5471D9228A7855200085199 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +261,7 @@
 		F5FD7E5428A5479400C8FCD6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F518225B28A812020018716E /* CollectionViewCells */,
 				F5E3389128A5767300C1A520 /* RegisterViewController.swift */,
 				F5E3388228A5600500C1A520 /* LoginViewController.swift */,
 				F5FD7E1128A52DFF00C8FCD6 /* WelcomeViewController.swift */,
@@ -263,6 +276,7 @@
 				F5701B1E28A6C22C001DE227 /* FirebaseProfile.swift */,
 				F5471D9528A7883900085199 /* WelcomeViewState.swift */,
 				F547084E28A7F1A600E97742 /* StorageViewState.swift */,
+				F518225928A80F8A0018716E /* StorageItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -429,6 +443,7 @@
 				F5E3388628A5613C00C1A520 /* Router.swift in Sources */,
 				F5701B1828A6BDED001DE227 /* RegisterRouter.swift in Sources */,
 				F5E3389228A5767300C1A520 /* RegisterViewController.swift in Sources */,
+				F518225A28A80F8A0018716E /* StorageItem.swift in Sources */,
 				F5E3388828A5629100C1A520 /* WelcomeRouter.swift in Sources */,
 				F5701B2128A6C898001DE227 /* LoginViewModel.swift in Sources */,
 				F5FD7E0E28A52DFF00C8FCD6 /* AppDelegate.swift in Sources */,
@@ -440,6 +455,7 @@
 				F547084F28A7F1A600E97742 /* StorageViewState.swift in Sources */,
 				F547085328A7F4CD00E97742 /* FirebaseStorageService.swift in Sources */,
 				F5701B1D28A6C1F0001DE227 /* FirebaseAuthorizationService.swift in Sources */,
+				F518225D28A812160018716E /* ItemCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

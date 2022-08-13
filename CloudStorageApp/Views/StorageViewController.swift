@@ -19,7 +19,7 @@ class StorageViewController: UIViewController {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.alwaysBounceVertical = true
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         return collectionView
     }()
     
@@ -33,6 +33,7 @@ class StorageViewController: UIViewController {
     }()
     
     private let viewModel = StorageViewModel()
+    private var items: [StorageItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +81,11 @@ class StorageViewController: UIViewController {
                 break
             }
         }
+        
+        viewModel.items.bind { items in
+            self.items = items ?? []
+            self.collectionView.reloadData()
+        }
     }
     
     @objc private func addTapped() {
@@ -95,11 +101,11 @@ class StorageViewController: UIViewController {
 
 extension StorageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ItemCollectionViewCell
         return cell
     }
 }
@@ -107,5 +113,13 @@ extension StorageViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension StorageViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = items[indexPath.item]
+        switch item.type {
+        case .file:
+            break
+        case .folder:
+            router?.navigate(to: .path(path: items[indexPath.item].path))
+        }
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 enum StorageRouterDestination {
     case back
+    case path(path: String)
 }
 
 protocol StorageRouter: Router {
@@ -27,6 +28,9 @@ class StorageRouterImplementation: StorageRouter {
         switch destination {
         case .back:
             sourceViewController?.navigationController?.popViewController(animated: true)
+        case .path(path: let path):
+            let vc = StorageViewController()
+            sourceViewController?.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
