@@ -8,6 +8,7 @@
 
 welcome.message = "CloudStorageApp - это приложение для хранения и управления файлами в облачном сервисе.";
 welcome.loginButton = "Войти";
+welcome.logoutButton = "Выйти из аккаунта";
 welcome.registerButton = "Создать новый аккаунт";
 
 login.title = "Войти в аккаунт";

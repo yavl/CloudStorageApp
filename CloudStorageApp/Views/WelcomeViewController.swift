@@ -30,27 +30,51 @@ class WelcomeViewController: UIViewController {
     
     private let registerButton: UIButton = {
         let button = UIButton(type: .system)
-        let loginTitle = NSLocalizedString("welcome.registerButton", comment: "sign up")
-        button.setTitle(loginTitle, for: .normal)
+        let registerTitle = NSLocalizedString("welcome.registerButton", comment: "sign up")
+        button.setTitle(registerTitle, for: .normal)
         return button
     }()
     
+    private let viewModel = WelcomeViewModel()
     private var handle: AuthStateDidChangeListenerHandle?
+    
+    private enum LoginButtonState {
+        case login
+        case logout
+    }
+    
+    private var loginButtonState: LoginButtonState = .login {
+        didSet {
+            var buttonTitle: String
+            switch loginButtonState {
+            case .login:
+                buttonTitle = NSLocalizedString("welcome.loginButton", comment: "log in")
+            case .logout:
+                buttonTitle = NSLocalizedString("welcome.logoutButton", comment: "log out")
+            }
+            loginButton.setTitle(buttonTitle, for: .normal)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        router = WelcomeRouter(sourceViewController: self)
+        router = WelcomeRouterImplementation(sourceViewController: self)
         
         setupViews()
         setupLayout()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         handle = Auth.auth().addStateDidChangeListener { auth, user in
-            
+            guard user != nil else {
+                self.viewModel.userLoggedOut()
+                return
+            }
+            self.viewModel.userLoggedIn()
         }
     }
     
@@ -92,8 +116,34 @@ class WelcomeViewController: UIViewController {
         }
     }
     
+    private func bind() {
+        viewModel.isLoggedIn.bind { viewState in
+            guard let viewState = viewState else { return }
+            
+            self.registerButton.isHidden = false
+            switch viewState {
+            case .initial:
+                self.loginButtonState = .login
+            case .loggedIn:
+                self.loginButtonState = .logout
+                self.registerButton.isHidden = true
+            case .loggedOut:
+                self.loginButtonState = .login
+            }
+        }
+    }
+    
     @objc private func loginTapped() {
-        router?.navigate(to: .login)
+        switch loginButtonState {
+        case .login:
+            router?.navigate(to: .login)
+        case .logout:
+            do {
+                try Auth.auth().signOut()
+            } catch let error {
+                print("failed to log out: \(error.localizedDescription)")
+            }
+        }
     }
     
     @objc private func registerTapped() {

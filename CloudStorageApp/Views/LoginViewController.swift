@@ -11,6 +11,8 @@ import SkyFloatingLabelTextField
 
 class LoginViewController: UIViewController {
     
+    var router: LoginRouter?
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
@@ -56,6 +58,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        router = LoginRouterImplementation(sourceViewController: self)
+        
         setupViews()
         setupLayout()
     }
@@ -90,6 +94,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func loginTapped() {
-        
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        viewModel.loginButtonTapped(email: email, password: password) { error in
+            if let error = error {
+                print("failed to log in: \(error.localizedDescription)")
+                return
+            }
+            self.router?.navigate(to: .back)
+        }
     }
 }

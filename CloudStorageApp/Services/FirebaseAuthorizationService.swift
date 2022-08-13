@@ -19,7 +19,7 @@ class FirebaseAuthorizationService: AuthorizationService {
                 completion(nil, error)
                 return
             }
-            let profile = Profile(uid: authResult.user.uid, email: authResult.user.email ?? "")
+            let profile = FirebaseProfile()
             completion(profile, nil)
         }
     }
@@ -34,7 +34,7 @@ class FirebaseAuthorizationService: AuthorizationService {
                 completion(nil, error)
                 return
             }
-            let profile = Profile(uid: authResult.user.uid, email: authResult.user.email ?? "")
+            let profile = FirebaseProfile()
             completion(profile, nil)
         }
     }

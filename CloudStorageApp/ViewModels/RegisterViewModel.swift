@@ -7,11 +7,18 @@
 
 import Foundation
 
-class RegisterViewModel {
+protocol RegisterViewModelProtocol {
+    func registerButtonTapped(email: String, password: String, completion: @escaping (Error?) -> Void)
+}
+
+class RegisterViewModel: RegisterViewModelProtocol {
     private let authService = FirebaseAuthorizationService()
     
-    func registerButtonTapped(email: String, password: String) {
+    func registerButtonTapped(email: String, password: String, completion: @escaping (Error?) -> Void) {
         authService.register(email: email, password: password) { profile, error in
+            defer {
+                completion(error)
+            }
             if let error = error {
                 print("failed to create user: \(error.localizedDescription)")
                 return

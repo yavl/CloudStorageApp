@@ -1,5 +1,5 @@
 //
-//  RegisterRouter.swift
+//  LoginRouter.swift
 //  CloudStorageApp
 //
 //  Created by Vladislav Nikolaev on 13.08.2022.
@@ -8,21 +8,25 @@
 import Foundation
 import UIKit
 
-enum RegisterRouterDestination {
+enum LoginRouterDestination {
     case back
 }
 
-class RegisterRouter: Router {
+protocol LoginRouter: Router {
+    func navigate(to destination: LoginRouterDestination)
+}
+
+class LoginRouterImplementation: LoginRouter {
     weak var sourceViewController: UIViewController?
     
     required init(sourceViewController: UIViewController?) {
         self.sourceViewController = sourceViewController
     }
     
-    func navigate(to destination: RegisterRouterDestination) {
+    func navigate(to destination: LoginRouterDestination) {
         switch destination {
         case .back:
-            sourceViewController?.navigationController?.dismiss(animated: true)
+            sourceViewController?.navigationController?.popViewController(animated: true)
         }
     }
 }

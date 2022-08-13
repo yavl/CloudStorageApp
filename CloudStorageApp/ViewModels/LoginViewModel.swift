@@ -7,11 +7,18 @@
 
 import Foundation
 
-class LoginViewModel {
+protocol LoginViewModelProtocol {
+    func loginButtonTapped(email: String, password: String, completion: @escaping (Error?) -> Void)
+}
+
+class LoginViewModel: LoginViewModelProtocol {
     private let authService = FirebaseAuthorizationService()
     
-    func loginButtonTapped(email: String, password: String) {
+    func loginButtonTapped(email: String, password: String, completion: @escaping (Error?) -> Void) {
         authService.login(email: email, password: password) { profile, error in
+            defer {
+                completion(error)
+            }
             if let error = error {
                 print("failed to log in: \(error.localizedDescription)")
                 return

@@ -12,7 +12,11 @@ enum WelcomeRouterDestination {
     case login, register
 }
 
-class WelcomeRouter: Router {
+protocol WelcomeRouter: Router {
+    func navigate(to destination: WelcomeRouterDestination)
+}
+
+class WelcomeRouterImplementation: WelcomeRouter {
     weak var sourceViewController: UIViewController?
     
     required init(sourceViewController: UIViewController?) {

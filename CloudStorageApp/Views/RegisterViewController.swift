@@ -11,6 +11,8 @@ import SkyFloatingLabelTextField
 
 class RegisterViewController: UIViewController {
     
+    var router: RegisterRouter?
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
@@ -56,6 +58,8 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        router = RegisterRouterImplementation(sourceViewController: self)
+        
         setupViews()
         setupLayout()
     }
@@ -92,6 +96,12 @@ class RegisterViewController: UIViewController {
     @objc private func registerTapped() {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        viewModel.registerButtonTapped(email: email, password: password)
+        viewModel.registerButtonTapped(email: email, password: password) { error in
+            if let error = error {
+                print("failed to create user: \(error.localizedDescription)")
+                return
+            }
+            self.router?.navigate(to: .back)
+        }
     }
 }

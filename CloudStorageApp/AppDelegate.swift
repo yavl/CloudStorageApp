@@ -7,7 +7,12 @@
 
 import UIKit
 import FirebaseCore
-import FirebaseAuth
+
+struct Environment {
+    let profile: Profile = FirebaseProfile()
+}
+
+let env = Environment()
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
