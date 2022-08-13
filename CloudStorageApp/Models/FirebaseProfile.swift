@@ -9,6 +9,11 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseProfile: Profile {
+    var uid: String {
+        guard let user = Auth.auth().currentUser else { return "" }
+        return user.uid
+    }
+    
     var email: String {
         guard let user = Auth.auth().currentUser else { return "" }
         return user.email ?? ""

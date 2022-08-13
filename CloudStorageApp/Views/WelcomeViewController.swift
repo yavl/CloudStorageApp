@@ -71,7 +71,7 @@ class WelcomeViewController: UIViewController {
         
         setupViews()
         setupLayout()
-        bind()
+        setupViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,8 +132,8 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    private func bind() {
-        viewModel.isLoggedIn.bind { viewState in
+    private func setupViewModel() {
+        viewModel.viewState.bind { viewState in
             guard let viewState = viewState else { return }
             
             self.registerButton.isHidden = false

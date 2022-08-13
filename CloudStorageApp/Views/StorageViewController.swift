@@ -12,13 +12,18 @@ fileprivate let cellIdentifier = "fileCellidentifier"
 
 class StorageViewController: UIViewController {
     
+    var router: StorageRouter?
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.alwaysBounceVertical = true
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         return collectionView
     }()
+    
+    private let refreshControl = UIRefreshControl()
     
     private let addButton: UIButton = {
         let button = UIButton(type: .system)
@@ -27,11 +32,16 @@ class StorageViewController: UIViewController {
         return button
     }()
     
+    private let viewModel = StorageViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        router = StorageRouterImplementation(sourceViewController: self)
+        
         setupViews()
         setupLayout()
+        setupViewModel()
     }
     
     private func setupViews() {
@@ -41,7 +51,9 @@ class StorageViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.refreshControl = refreshControl
         
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
     }
     
@@ -55,8 +67,27 @@ class StorageViewController: UIViewController {
         }
     }
     
+    private func setupViewModel() {
+        viewModel.viewState.bind { viewState in
+            guard let viewState = viewState else { return }
+            
+            switch viewState {
+            case .initial:
+                break
+            case .fetching:
+                break
+            case .ready:
+                break
+            }
+        }
+    }
+    
     @objc private func addTapped() {
-        
+        viewModel.addButtonTapped()
+    }
+    
+    @objc private func refresh() {
+        viewModel.refresh()
     }
 }
 

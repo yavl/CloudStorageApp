@@ -10,6 +10,7 @@ import FirebaseCore
 
 struct Environment {
     let authService = FirebaseAuthorizationService()
+    let storageService = FirebaseStorageService()
     let profile: Profile = FirebaseProfile()
 }
 

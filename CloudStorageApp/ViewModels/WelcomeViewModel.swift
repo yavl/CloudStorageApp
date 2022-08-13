@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WelcomeViewModelProtocol {
-    var isLoggedIn: Observable<WelcomeViewState> { get set }
+    var viewState: Observable<WelcomeViewState> { get set }
     
     func userLoggedIn()
     func userLoggedOut()
@@ -16,15 +16,15 @@ protocol WelcomeViewModelProtocol {
 }
 
 class WelcomeViewModel: WelcomeViewModelProtocol {
-    var isLoggedIn = Observable(WelcomeViewState.initial)
+    var viewState = Observable(WelcomeViewState.initial)
     
     func userLoggedIn() {
-        isLoggedIn.value = .loggedIn
+        viewState.value = .loggedIn
         print("logged in")
     }
     
     func userLoggedOut() {
-        isLoggedIn.value = .loggedOut
+        viewState.value = .loggedOut
 
         print("logged out")
     }

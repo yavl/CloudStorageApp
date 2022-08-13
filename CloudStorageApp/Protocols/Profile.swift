@@ -8,5 +8,6 @@
 import Foundation
 
 protocol Profile {
+    var uid: String { get }
     var email: String { get }
 }
