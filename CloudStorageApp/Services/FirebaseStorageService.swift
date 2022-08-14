@@ -51,8 +51,7 @@ class FirebaseStorageService: StorageService {
     
     func upload(filePath: String) {
         guard let url = URL(string: filePath) else { return }
-        let storageRef = storage.reference().child("\(env.profile.uid)/file3.bin")
-        let data = "asdij".data(using: .utf8)
+        let storageRef = storage.reference().child("\(env.profile.uid)/file5.jpg")
         let uploadTask = storageRef.putFile(from: url) { metadata, error in
             if let error = error {
                 print("failed to upload file: \(error.localizedDescription)")

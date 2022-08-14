@@ -13,7 +13,7 @@ protocol StorageViewModelProtocol {
     var items: Observable<[StorageItem]> { get }
     
     func createFolderButtonTapped(folderName: String)
-    func addFileButtonTapped()
+    func addFileButtonTapped(filePath: String)
     func refresh()
 }
 
@@ -26,8 +26,8 @@ class StorageViewModel: StorageViewModelProtocol {
         env.storageService.createFolder(path: folderName)
     }
     
-    func addFileButtonTapped() {
-        //env.storageService.save()
+    func addFileButtonTapped(filePath: String) {
+        env.storageService.upload(filePath: filePath)
     }
     
     func refresh() {

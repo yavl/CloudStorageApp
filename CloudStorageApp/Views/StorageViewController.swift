@@ -42,6 +42,15 @@ class StorageViewController: UIViewController {
     private let viewModel = StorageViewModel()
     private var items: [StorageItem] = []
     
+    init(path: String = "") {
+        viewModel.currentPath = path
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -131,7 +140,10 @@ class StorageViewController: UIViewController {
     }
     
     @objc private func addFileTapped() {
-        viewModel.addFileButtonTapped()
+        router?.openDocumentPicker { url in
+            self.viewModel.addFileButtonTapped(filePath: url.absoluteString)
+        }
+        //viewModel.addFileButtonTapped(filePath: "asd")
     }
     
     @objc private func refresh() {
