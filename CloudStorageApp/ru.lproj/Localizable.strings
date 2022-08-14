@@ -33,3 +33,4 @@ storage.createFolder.message = "Введите название новой па�
 storage.createFolder.placeholder = "Название папки";
 storage.rename = "Переименовать";
 storage.delete = "Удалить";
+storage.createFolder.alert = "Невозможно создать вложенную папку, вернитесь назад";

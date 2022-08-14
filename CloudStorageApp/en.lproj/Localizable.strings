@@ -33,4 +33,4 @@ storage.createFolder.message = "Enter new folder name";
 storage.createFolder.placeholder = "Folder name";
 storage.rename = "Rename";
 storage.delete = "Delete";
-
+storage.createFolder.alert = "Can't create subdirectory, go to root folder";

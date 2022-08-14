@@ -120,6 +120,10 @@ class StorageViewController: UIViewController {
         // should have placed the logic below somewhere else
         guard viewModel.currentPath.isEmpty else {
             print("can't create subdirectory, go to root folder")
+            let errorMessage = NSLocalizedString("storage.createFolder.alert", comment: "error")
+            let alert = UIAlertController(title: "Alert", message: errorMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
             return
         }
         let title = NSLocalizedString("storage.createFolder.title", comment: "create folder")
@@ -200,7 +204,9 @@ extension StorageViewController: UICollectionViewDelegate {
             
             let renameTitle = NSLocalizedString("storage.rename", comment: "rename")
             let rename = UIAction(title: renameTitle, image: UIImage(systemName: "square.and.pencil"), identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
-                print("edit button clicked")
+                let alert = UIAlertController(title: "Alert", message: "Нельзя переименовать в Firebase Storage, стоило выбрать другой сервис/сделать костыль.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             let deleteTitle = NSLocalizedString("storage.delete", comment: "delete")
             let delete = UIAction(title: deleteTitle, image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil,attributes: .destructive, state: .off) { _ in

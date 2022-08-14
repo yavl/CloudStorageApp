@@ -24,7 +24,7 @@ class StorageViewModel: StorageViewModelProtocol {
     var items = Observable([StorageItem]())
     
     func createFolderButtonTapped(folderName: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
-        env.storageService.createFolder(path: folderName)
+        env.storageService.createFolder(path: folderName, completion: completion)
     }
     
     func addFileButtonTapped(filePath: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
