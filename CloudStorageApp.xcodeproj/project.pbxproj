@@ -28,6 +28,7 @@
 		F5701B1F28A6C22C001DE227 /* FirebaseProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B1E28A6C22C001DE227 /* FirebaseProfile.swift */; };
 		F5701B2128A6C898001DE227 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5701B2028A6C898001DE227 /* LoginViewModel.swift */; };
 		F592C23028A55E3E00942F43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F592C23228A55E3E00942F43 /* Localizable.strings */; };
+		F5C2E5DE28A94AD700AE1770 /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2E5DD28A94AD700AE1770 /* ViewMode.swift */; };
 		F5E3388328A5600500C1A520 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388228A5600500C1A520 /* LoginViewController.swift */; };
 		F5E3388628A5613C00C1A520 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388528A5613C00C1A520 /* Router.swift */; };
 		F5E3388828A5629100C1A520 /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3388728A5629100C1A520 /* WelcomeRouter.swift */; };
@@ -89,6 +90,7 @@
 		F5701B2028A6C898001DE227 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F592C23128A55E3E00942F43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F592C23328A55E5900942F43 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F5C2E5DD28A94AD700AE1770 /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
 		F5E3388228A5600500C1A520 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5E3388528A5613C00C1A520 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F5E3388728A5629100C1A520 /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				F5471D9528A7883900085199 /* WelcomeViewState.swift */,
 				F547084E28A7F1A600E97742 /* StorageViewState.swift */,
 				F518225928A80F8A0018716E /* StorageItem.swift */,
+				F5C2E5DD28A94AD700AE1770 /* ViewMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C2E5DE28A94AD700AE1770 /* ViewMode.swift in Sources */,
 				F5471D9428A7855C00085199 /* Observable.swift in Sources */,
 				F547085128A7F44400E97742 /* StorageService.swift in Sources */,
 				F5E3388328A5600500C1A520 /* LoginViewController.swift in Sources */,

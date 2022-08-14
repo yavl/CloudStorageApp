@@ -7,9 +7,12 @@
 
 import Foundation
 
+fileprivate let isTableViewModeKey = "isTableViewModeKey"
+
 protocol StorageViewModelProtocol {
     var currentPath: String { get }
     var viewState: Observable<StorageViewState> { get set }
+    var viewMode: Observable<ViewMode> { get set }
     var items: Observable<[StorageItem]> { get }
     
     func createFolderButtonTapped(folderName: String, completion: @escaping (_ success: Bool) -> Void)
@@ -21,7 +24,15 @@ protocol StorageViewModelProtocol {
 class StorageViewModel: StorageViewModelProtocol {
     var currentPath = ""
     var viewState = Observable(StorageViewState.initial)
+    var viewMode = Observable(ViewMode.grid)
     var items = Observable([StorageItem]())
+    
+    private let defaults = UserDefaults.standard
+    
+    init() {
+        let key = defaults.bool(forKey: isTableViewModeKey)
+        viewMode.value = key ? .table : .grid
+    }
     
     func createFolderButtonTapped(folderName: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
         env.storageService.createFolder(path: folderName, completion: completion)
@@ -55,6 +66,19 @@ class StorageViewModel: StorageViewModelProtocol {
                 return
             }
             self.items.value = items
+        }
+    }
+    
+    func switchViewMode() {
+        if let value = viewMode.value {
+            switch value {
+            case .table:
+                viewMode.value = .grid
+                defaults.set(false, forKey: isTableViewModeKey)
+            case .grid:
+                viewMode.value = .table
+                defaults.set(true, forKey: isTableViewModeKey)
+            }
         }
     }
 }

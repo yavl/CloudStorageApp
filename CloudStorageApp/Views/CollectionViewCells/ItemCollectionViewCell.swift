@@ -29,7 +29,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupViews()
-        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -45,23 +44,43 @@ class ItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(filenameLabel)
     }
     
-    private func setupLayout() {
-        iconView.snp.makeConstraints { make in
-            make.left.top.bottom.equalToSuperview()
-            make.height.equalTo(iconView.snp.width)
-        }
+    private func setupLayout(viewMode: ViewMode) {
+        iconView.snp.removeConstraints()
+        filenameLabel.snp.removeConstraints()
         
-        filenameLabel.snp.makeConstraints { make in
-            make.left.equalTo(iconView.snp.right).offset(10)
-            make.right.equalToSuperview().inset(10)
-            make.centerY.equalToSuperview()
+        switch viewMode {
+        case .table:
+            iconView.snp.makeConstraints { make in
+                make.left.top.bottom.equalToSuperview()
+                make.height.equalTo(iconView.snp.width)
+            }
+            
+            filenameLabel.snp.makeConstraints { make in
+                make.left.equalTo(iconView.snp.right).offset(10)
+                make.right.equalToSuperview().inset(10)
+                make.centerY.equalToSuperview()
+            }
+            filenameLabel.textAlignment = .left
+        case .grid:
+            iconView.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.height.equalTo(iconView.snp.width)
+                make.centerX.equalToSuperview()
+            }
+            
+            filenameLabel.snp.makeConstraints { make in
+                make.top.equalTo(iconView.snp.bottom).offset(10)
+                make.left.right.equalToSuperview()
+            }
+            filenameLabel.textAlignment = .center
         }
     }
     
-    func configure(with storageItem: StorageItem) {
+    func configure(with storageItem: StorageItem, viewMode: ViewMode = .table) {
         filenameLabel.text = storageItem.name
         if storageItem.type == .folder {
             iconView.image = UIImage(systemName: "folder")?.withTintColor(.systemOrange, renderingMode: .alwaysOriginal)
         }
+        setupLayout(viewMode: viewMode)
     }
 }

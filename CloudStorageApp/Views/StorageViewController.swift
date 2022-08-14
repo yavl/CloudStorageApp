@@ -25,6 +25,13 @@ class StorageViewController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
     
+    private let viewModeButton: UIButton = {
+        let button = UIButton(type: .system)
+        let title = NSLocalizedString("Grid/Table view mode", comment: "grid or table mode")
+        button.setTitle(title, for: .normal)
+        return button
+    }()
+    
     private let createFolderButton: UIButton = {
         let button = UIButton(type: .system)
         let title = NSLocalizedString("storage.createFolderButton", comment: "create folder")
@@ -67,6 +74,7 @@ class StorageViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
+        view.addSubview(viewModeButton)
         view.addSubview(createFolderButton)
         view.addSubview(addFileButton)
         
@@ -75,6 +83,7 @@ class StorageViewController: UIViewController {
         collectionView.refreshControl = refreshControl
         
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        viewModeButton.addTarget(self, action: #selector(viewModeTapped), for: .touchUpInside)
         createFolderButton.addTarget(self, action: #selector(createFolderTapped), for: .touchUpInside)
         addFileButton.addTarget(self, action: #selector(addFileTapped), for: .touchUpInside)
     }
@@ -85,6 +94,11 @@ class StorageViewController: UIViewController {
             make.bottom.left.right.equalToSuperview()
         }
         
+        viewModeButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(createFolderButton.snp.top).offset(-10)
+        }
+        
         createFolderButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(addFileButton.snp.top).offset(-10)
@@ -92,7 +106,7 @@ class StorageViewController: UIViewController {
         
         addFileButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(40)
         }
     }
     
@@ -113,6 +127,10 @@ class StorageViewController: UIViewController {
         
         viewModel.items.bind { [unowned self] items in
             self.items = items ?? []
+        }
+        
+        viewModel.viewMode.bind { [unowned self] viewMode in
+            self.collectionView.reloadData()
         }
     }
     
@@ -170,6 +188,10 @@ class StorageViewController: UIViewController {
     @objc private func refresh() {
         viewModel.refresh()
     }
+    
+    @objc private func viewModeTapped() {
+        viewModel.switchViewMode()
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -181,7 +203,7 @@ extension StorageViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ItemCollectionViewCell
-        cell.configure(with: items[indexPath.item])
+        cell.configure(with: items[indexPath.item], viewMode: viewModel.viewMode.value ?? .table)
         return cell
     }
 }
@@ -230,7 +252,16 @@ extension StorageViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension StorageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 60)
+        var size: CGSize
+        switch viewModel.viewMode.value {
+        case .table:
+            size = CGSize(width: UIScreen.main.bounds.width, height: 60)
+        case .grid:
+            size = CGSize(width: 100, height: 60)
+        default:
+            size = CGSize(width: UIScreen.main.bounds.width, height: 60)
+        }
+        return size
     }
 }
 
