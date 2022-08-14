@@ -36,23 +36,26 @@ class FirebaseStorageService: StorageService {
     }
     
     /// Forces "folder creation" by creating `.dummy.txt` file at path
-    func createFolder(path: String) {
+    func createFolder(path: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
         let storageRef = storage.reference().child("\(env.profile.uid)/\(path)/.dummy.txt")
         let data = "Dummy text file to create folders".data(using: .utf8)
         let uploadTask = storageRef.putData(data!) { metadata, error in
             if let error = error {
                 print("failed to upload file: \(error.localizedDescription)")
+                completion(false)
+                return
             }
             guard let metadata = metadata else { return }
             let size = metadata.size
             print("size: \(size)")
+            completion(true)
         }
     }
     
-    func upload(filePath: String, to path: String) {
+    func upload(filePath: String, to path: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
         guard let url = URL(string: filePath) else { return }
         let filename = filePath.split(separator: "/").last ?? "unknown-filename"
-        let storageRef = storage.reference().child("\(path)/\(filename)")
+        let storageRef = storage.reference().child("\(env.profile.uid)/\(path)/\(filename)")
         print("uid: \(env.profile.uid)")
         print("path: \(path)")
         print("filename: \(filename)")
@@ -60,10 +63,13 @@ class FirebaseStorageService: StorageService {
         let uploadTask = storageRef.putFile(from: url) { metadata, error in
             if let error = error {
                 print("failed to upload file: \(error.localizedDescription)")
+                completion(false)
+                return
             }
             guard let metadata = metadata else { return }
             let size = metadata.size
             print("size: \(size)")
+            completion(true)
         }
     }
     
@@ -71,22 +77,25 @@ class FirebaseStorageService: StorageService {
         
     }
     
-    func delete(filePath: String) {
+    func delete(filePath: String, completion: @escaping (_ success: Bool) -> Void = { _ in }) {
         let storageRef = storage.reference().child(filePath)
         storageRef.delete { error in
             if let error = error {
                 print("failed to delete file: \(error.localizedDescription)")
+                completion(false)
                 return
             }
+            completion(true)
             print("successfully deleted file: \(filePath)")
         }
     }
     
-    func deleteFolder(path: String) {
+    func deleteFolder(path: String, completion: @escaping (_ success: Bool) -> Void = { _ in }) {
         let storageRef = storage.reference().child(path)
         storageRef.listAll { result, error in
             if let error = error {
                 print("failed to list in delete folder: \(error.localizedDescription)")
+                completion(false)
                 return
             }
             guard let result = result else { return }
@@ -98,6 +107,7 @@ class FirebaseStorageService: StorageService {
                     print("removed \(item.name)")
                 }
             }
+            completion(true)
         }
     }
 }

@@ -12,9 +12,9 @@ protocol StorageViewModelProtocol {
     var viewState: Observable<StorageViewState> { get set }
     var items: Observable<[StorageItem]> { get }
     
-    func createFolderButtonTapped(folderName: String)
-    func addFileButtonTapped(filePath: String)
-    func deleteButtonTapped(filePath: String, type: StorageItem.ItemType)
+    func createFolderButtonTapped(folderName: String, completion: @escaping (_ success: Bool) -> Void)
+    func addFileButtonTapped(filePath: String, completion: @escaping (_ success: Bool) -> Void)
+    func deleteButtonTapped(filePath: String, type: StorageItem.ItemType, completion: @escaping (_ success: Bool) -> Void)
     func refresh()
 }
 
@@ -23,20 +23,24 @@ class StorageViewModel: StorageViewModelProtocol {
     var viewState = Observable(StorageViewState.initial)
     var items = Observable([StorageItem]())
     
-    func createFolderButtonTapped(folderName: String) {
+    func createFolderButtonTapped(folderName: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
         env.storageService.createFolder(path: folderName)
     }
     
-    func addFileButtonTapped(filePath: String) {
-        env.storageService.upload(filePath: filePath, to: currentPath)
+    func addFileButtonTapped(filePath: String, completion: @escaping (_ success: Bool) -> Void = { success in }) {
+        env.storageService.upload(filePath: filePath, to: currentPath, completion: completion)
     }
     
-    func deleteButtonTapped(filePath: String, type: StorageItem.ItemType) {
+    func deleteButtonTapped(filePath: String, type: StorageItem.ItemType, completion: @escaping (_ success: Bool) -> Void = { success in }) {
         switch type {
         case .folder:
-            env.storageService.deleteFolder(path: filePath)
+            env.storageService.deleteFolder(path: filePath) { success in
+                completion(success)
+            }
         case .file:
-            env.storageService.delete(filePath: filePath)
+            env.storageService.delete(filePath: filePath) { success in
+                completion(success)
+            }
         }
     }
     

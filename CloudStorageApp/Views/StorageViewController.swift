@@ -97,7 +97,7 @@ class StorageViewController: UIViewController {
     }
     
     private func setupViewModel() {
-        viewModel.viewState.bind { viewState in
+        viewModel.viewState.bind { [unowned self] viewState in
             guard let viewState = viewState else { return }
             
             switch viewState {
@@ -111,7 +111,7 @@ class StorageViewController: UIViewController {
             }
         }
         
-        viewModel.items.bind { items in
+        viewModel.items.bind { [unowned self] items in
             self.items = items ?? []
         }
     }
@@ -129,7 +129,10 @@ class StorageViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: createTitle, style: .default, handler: { alert -> Void in
             let textField = alertController.textFields![0] as UITextField
             if let text = textField.text {
-                self.viewModel.createFolderButtonTapped(folderName: "\(text)")
+                self.viewModel.createFolderButtonTapped(folderName: "\(text)") { success in
+                    guard success else { return }
+                    self.viewModel.refresh()
+                }
             }
         }))
         let cancelTitle = NSLocalizedString("app.cancel", comment: "cancel")
@@ -143,10 +146,18 @@ class StorageViewController: UIViewController {
     @objc private func addFileTapped() {
         let picker = UIImagePickerController()
         picker.delegate = self
-        didPickImage = { url in
-            self.viewModel.addFileButtonTapped(filePath: url.absoluteString)
+        didPickImage = { [unowned self] url in
+            self.viewModel.addFileButtonTapped(filePath: url.absoluteString) { success in
+                guard success else { return }
+                self.viewModel.refresh()
+            }
         }
         present(picker, animated: true)
+        
+//        router?.openDocumentPicker { url in
+//            self.viewModel.addFileButtonTapped(filePath: url.absoluteString)
+//        }
+        
 //        router?.openImagePicker { url in
 //            self.viewModel.addFileButtonTapped(filePath: url.absoluteString)
 //        }
@@ -194,7 +205,13 @@ extension StorageViewController: UICollectionViewDelegate {
             let deleteTitle = NSLocalizedString("storage.delete", comment: "delete")
             let delete = UIAction(title: deleteTitle, image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil,attributes: .destructive, state: .off) { _ in
                 let item = self.items[indexPath.item]
-                self.viewModel.deleteButtonTapped(filePath: item.path, type: item.type)
+                self.viewModel.deleteButtonTapped(filePath: item.path, type: item.type) { success in
+                    guard success else { return }
+                    DispatchQueue.main.async {
+                        self.items.remove(at: indexPath.item)
+                        collectionView.deleteItems(at: [indexPath])
+                    }
+                }
             }
             
             return UIMenu(title: "", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [rename, delete])
