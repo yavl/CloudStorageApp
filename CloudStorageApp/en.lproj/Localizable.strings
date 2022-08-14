@@ -6,6 +6,9 @@
   
 */
 
+app.cancel = "Cancel";
+app.create = "Create";
+
 welcome.message = "CloudStorageApp - an app for storing and managing files in the cloud service.";
 welcome.loginButton = "Sign in";
 welcome.logoutButton = "Log out";
@@ -23,4 +26,8 @@ register.password.placeholder = "New password";
 register.registerButton = "Sign up";
 
 storage.title = "Storage";
-storage.addButton = "Upload file";
+storage.createFolderButton = "Create folder";
+storage.addFileButton = "Upload file";
+storage.createFolder.title = "Create folder";
+storage.createFolder.message = "Enter new folder name";
+storage.createFolder.placeholder = "Folder name";

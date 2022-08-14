@@ -15,6 +15,16 @@ class ItemCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let filenameLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    private let sizeLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,11 +38,26 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(iconView)
+        contentView.addSubview(filenameLabel)
     }
     
     private func setupLayout() {
         iconView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.top.bottom.equalToSuperview()
+            make.height.equalTo(iconView.snp.width)
+        }
+        
+        filenameLabel.snp.makeConstraints { make in
+            make.left.equalTo(iconView.snp.right).offset(10)
+            make.right.equalToSuperview().inset(10)
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    func configure(with storageItem: StorageItem) {
+        filenameLabel.text = storageItem.name
+        if storageItem.type == .folder {
+            iconView.image = UIImage(systemName: "folder")?.withTintColor(.systemOrange, renderingMode: .alwaysOriginal)
         }
     }
 }

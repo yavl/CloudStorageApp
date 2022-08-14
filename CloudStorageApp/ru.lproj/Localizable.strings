@@ -6,6 +6,9 @@
   
 */
 
+app.cancel = "Отмена";
+app.create = "Создать";
+
 welcome.message = "CloudStorageApp - это приложение для хранения и управления файлами в облачном сервисе.";
 welcome.loginButton = "Войти";
 welcome.logoutButton = "Выйти из аккаунта";
@@ -23,4 +26,8 @@ register.password.placeholder = "Новый пароль";
 register.registerButton = "Создать аккаунт";
 
 storage.title = "Хранилище";
-storage.addButton = "Добавить файл";
+storage.createFolderButton = "Создать папку";
+storage.addFileButton = "Добавить файл";
+storage.createFolder.title = "Создать папку";
+storage.createFolder.message = "Введите название новой папки";
+storage.createFolder.placeholder = "Название папки";

@@ -12,7 +12,8 @@ protocol StorageViewModelProtocol {
     var viewState: Observable<StorageViewState> { get set }
     var items: Observable<[StorageItem]> { get }
     
-    func addButtonTapped()
+    func createFolderButtonTapped(folderName: String)
+    func addFileButtonTapped()
     func refresh()
 }
 
@@ -21,13 +22,20 @@ class StorageViewModel: StorageViewModelProtocol {
     var viewState = Observable(StorageViewState.initial)
     var items = Observable([StorageItem]())
     
-    func addButtonTapped() {
-        env.storageService.save()
+    func createFolderButtonTapped(folderName: String) {
+        env.storageService.createFolder(path: folderName)
+    }
+    
+    func addFileButtonTapped() {
+        //env.storageService.save()
     }
     
     func refresh() {
         viewState.value = .fetching
         env.storageService.list(path: currentPath) { items, error in
+            defer {
+                self.viewState.value = .ready
+            }
             if let error = error {
                 print("failed to list files in path: \(error.localizedDescription)")
                 return
