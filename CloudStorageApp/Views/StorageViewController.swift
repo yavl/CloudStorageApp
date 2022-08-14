@@ -193,7 +193,8 @@ extension StorageViewController: UICollectionViewDelegate {
             }
             let deleteTitle = NSLocalizedString("storage.delete", comment: "delete")
             let delete = UIAction(title: deleteTitle, image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil,attributes: .destructive, state: .off) { _ in
-                self.viewModel.deleteButtonTapped(filePath: self.items[indexPath.item].path)
+                let item = self.items[indexPath.item]
+                self.viewModel.deleteButtonTapped(filePath: item.path, type: item.type)
             }
             
             return UIMenu(title: "", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [rename, delete])

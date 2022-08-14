@@ -82,5 +82,22 @@ class FirebaseStorageService: StorageService {
         }
     }
     
-    
+    func deleteFolder(path: String) {
+        let storageRef = storage.reference().child(path)
+        storageRef.listAll { result, error in
+            if let error = error {
+                print("failed to list in delete folder: \(error.localizedDescription)")
+                return
+            }
+            guard let result = result else { return }
+            for item in result.items {
+                item.delete { error in
+                    if let error = error {
+                        print("deleteFolder - failed to remove \(error.localizedDescription)")
+                    }
+                    print("removed \(item.name)")
+                }
+            }
+        }
+    }
 }

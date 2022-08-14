@@ -14,7 +14,7 @@ protocol StorageViewModelProtocol {
     
     func createFolderButtonTapped(folderName: String)
     func addFileButtonTapped(filePath: String)
-    func deleteButtonTapped(filePath: String)
+    func deleteButtonTapped(filePath: String, type: StorageItem.ItemType)
     func refresh()
 }
 
@@ -31,8 +31,13 @@ class StorageViewModel: StorageViewModelProtocol {
         env.storageService.upload(filePath: filePath, to: currentPath)
     }
     
-    func deleteButtonTapped(filePath: String) {
-        env.storageService.delete(filePath: filePath)
+    func deleteButtonTapped(filePath: String, type: StorageItem.ItemType) {
+        switch type {
+        case .folder:
+            env.storageService.deleteFolder(path: filePath)
+        case .file:
+            env.storageService.delete(filePath: filePath)
+        }
     }
     
     func refresh() {

@@ -13,4 +13,5 @@ protocol StorageService {
     func upload(filePath: String, to path: String)
     func rename()
     func delete(filePath: String)
+    func deleteFolder(path: String)
 }
