@@ -31,3 +31,5 @@ storage.addFileButton = "Добавить файл";
 storage.createFolder.title = "Создать папку";
 storage.createFolder.message = "Введите название новой папки";
 storage.createFolder.placeholder = "Название папки";
+storage.rename = "Переименовать";
+storage.delete = "Удалить";

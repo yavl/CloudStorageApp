@@ -49,9 +49,14 @@ class FirebaseStorageService: StorageService {
         }
     }
     
-    func upload(filePath: String) {
+    func upload(filePath: String, to path: String) {
         guard let url = URL(string: filePath) else { return }
-        let storageRef = storage.reference().child("\(env.profile.uid)/file5.jpg")
+        let filename = filePath.split(separator: "/").last ?? "unknown-filename"
+        let storageRef = storage.reference().child("\(path)/\(filename)")
+        print("uid: \(env.profile.uid)")
+        print("path: \(path)")
+        print("filename: \(filename)")
+        print("total: \(env.profile.uid)/\(path)/\(filename)")
         let uploadTask = storageRef.putFile(from: url) { metadata, error in
             if let error = error {
                 print("failed to upload file: \(error.localizedDescription)")
@@ -66,8 +71,15 @@ class FirebaseStorageService: StorageService {
         
     }
     
-    func delete() {
-        
+    func delete(filePath: String) {
+        let storageRef = storage.reference().child(filePath)
+        storageRef.delete { error in
+            if let error = error {
+                print("failed to delete file: \(error.localizedDescription)")
+                return
+            }
+            print("successfully deleted file: \(filePath)")
+        }
     }
     
     

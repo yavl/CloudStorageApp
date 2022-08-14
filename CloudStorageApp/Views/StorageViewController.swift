@@ -41,6 +41,7 @@ class StorageViewController: UIViewController {
     
     private let viewModel = StorageViewModel()
     private var items: [StorageItem] = []
+    var didPickImage: ((URL) -> Void)?
     
     init(path: String = "") {
         viewModel.currentPath = path
@@ -140,10 +141,15 @@ class StorageViewController: UIViewController {
     }
     
     @objc private func addFileTapped() {
-        router?.openDocumentPicker { url in
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        didPickImage = { url in
             self.viewModel.addFileButtonTapped(filePath: url.absoluteString)
         }
-        //viewModel.addFileButtonTapped(filePath: "asd")
+        present(picker, animated: true)
+//        router?.openImagePicker { url in
+//            self.viewModel.addFileButtonTapped(filePath: url.absoluteString)
+//        }
     }
     
     @objc private func refresh() {
@@ -174,8 +180,26 @@ extension StorageViewController: UICollectionViewDelegate {
         case .file:
             break
         case .folder:
-            router?.navigate(to: .path(path: items[indexPath.item].path))
+            router?.navigate(to: .path(path: items[indexPath.item].name))
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+            
+            let renameTitle = NSLocalizedString("storage.rename", comment: "rename")
+            let rename = UIAction(title: renameTitle, image: UIImage(systemName: "square.and.pencil"), identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
+                print("edit button clicked")
+            }
+            let deleteTitle = NSLocalizedString("storage.delete", comment: "delete")
+            let delete = UIAction(title: deleteTitle, image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil,attributes: .destructive, state: .off) { _ in
+                self.viewModel.deleteButtonTapped(filePath: self.items[indexPath.item].path)
+            }
+            
+            return UIMenu(title: "", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [rename, delete])
+            
+        }
+        return context
     }
 }
 
@@ -183,5 +207,24 @@ extension StorageViewController: UICollectionViewDelegate {
 extension StorageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width, height: 60)
+    }
+}
+
+// MARK: - UIImagePickerDelegate
+
+extension StorageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        defer {
+            didPickImage = nil
+            picker.dismiss(animated: true)
+        }
+        if let imageUrl = info[.imageURL] as? URL {
+            didPickImage?(imageUrl)
+            return
+        }
+        if let videoUrl = info[.mediaURL] as? URL {
+            didPickImage?(videoUrl)
+            return
+        }
     }
 }

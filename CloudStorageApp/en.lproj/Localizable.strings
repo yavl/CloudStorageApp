@@ -31,3 +31,6 @@ storage.addFileButton = "Upload file";
 storage.createFolder.title = "Create folder";
 storage.createFolder.message = "Enter new folder name";
 storage.createFolder.placeholder = "Folder name";
+storage.rename = "Rename";
+storage.delete = "Delete";
+

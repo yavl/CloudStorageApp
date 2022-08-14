@@ -43,12 +43,15 @@ class StorageRouterImplementation: NSObject, StorageRouter {
         let supportedTypes: [UTType] = [.image, .movie, .video, .mp3, .audio, .quickTimeMovie, .mpeg, .mpeg2Video, .mpeg2TransportStream, .mpeg4Movie, .mpeg4Audio, .appleProtectedMPEG4Audio, .appleProtectedMPEG4Video, .avi, .aiff, .wav, .midi, .livePhoto, .tiff, .gif, .icns]
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes)
         picker.delegate = self
+        didPickDocument = completion
         sourceViewController?.present(picker, animated: true)
-        self.didPickDocument = completion
     }
     
     func openImagePicker(completion: @escaping (URL) -> Void) {
-        
+//        let picker = UIImagePickerController()
+//        picker.delegate = self
+//        didPickImage = completion
+//        sourceViewController?.present(picker, animated: true)
     }
 }
 
