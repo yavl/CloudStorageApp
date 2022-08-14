@@ -9,6 +9,7 @@ import Foundation
 import FirebaseStorage
 
 fileprivate let dummyFileName = ".dummy.txt"
+fileprivate let maxFileSizeInMegabytes: Double = 20 // hardcode alert
 
 class FirebaseStorageService: StorageService {
     
@@ -80,7 +81,7 @@ class FirebaseStorageService: StorageService {
         print("filename: \(filename)")
         print("total: \(env.profile.uid)/\(path)/\(filename)")
         let size = sizeInMB(url: url)
-        guard size <= 10 else {
+        guard size <= maxFileSizeInMegabytes else {
             print("too big size: \(size)MB")
             return
         }
