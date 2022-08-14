@@ -36,6 +36,10 @@ class ItemCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        iconView.image = UIImage(systemName: "doc")
+    }
+    
     private func setupViews() {
         contentView.addSubview(iconView)
         contentView.addSubview(filenameLabel)
