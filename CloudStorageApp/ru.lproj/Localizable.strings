@@ -8,6 +8,7 @@
 
 app.cancel = "Отмена";
 app.create = "Создать";
+app.set = "Задать";
 
 welcome.message = "CloudStorageApp - это приложение для хранения и управления файлами в облачном сервисе.";
 welcome.loginButton = "Войти";
@@ -28,9 +29,14 @@ register.registerButton = "Создать аккаунт";
 storage.title = "Хранилище";
 storage.createFolderButton = "Создать папку";
 storage.addFileButton = "Добавить файл";
+storage.viewModeButton = "Вид (таблица/сетка)";
+storage.filterButton = "Фильтр по расширению";
 storage.createFolder.title = "Создать папку";
 storage.createFolder.message = "Введите название новой папки";
 storage.createFolder.placeholder = "Название папки";
 storage.rename = "Переименовать";
 storage.delete = "Удалить";
 storage.createFolder.alert = "Невозможно создать вложенную папку, вернитесь назад";
+storage.filter.title = "Фильтр по расширению";
+storage.filter.message = "Задайте расширение, очистите поле чтобы убрать фильтр";
+storage.filter.placeholder = "Расширение (например, 'txt')";

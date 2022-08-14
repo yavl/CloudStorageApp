@@ -23,6 +23,8 @@ protocol StorageViewModelProtocol {
 
 class StorageViewModel: StorageViewModelProtocol {
     var currentPath = ""
+    /// nil to remove filter
+    var filtersByExtension: String?
     var viewState = Observable(StorageViewState.initial)
     var viewMode = Observable(ViewMode.grid)
     var items = Observable([StorageItem]())
@@ -57,7 +59,7 @@ class StorageViewModel: StorageViewModelProtocol {
     
     func refresh() {
         viewState.value = .fetching
-        env.storageService.list(path: currentPath) { items, error in
+        env.storageService.list(path: currentPath, filterByExtension: filtersByExtension) { items, error in
             defer {
                 self.viewState.value = .ready
             }

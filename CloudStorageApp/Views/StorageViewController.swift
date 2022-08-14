@@ -25,9 +25,24 @@ class StorageViewController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
     
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    private let filterButton: UIButton = {
+        let button = UIButton(type: .system)
+        let title = NSLocalizedString("storage.filterButton", comment: "filter by extension")
+        button.setTitle(title, for: .normal)
+        return button
+    }()
+    
     private let viewModeButton: UIButton = {
         let button = UIButton(type: .system)
-        let title = NSLocalizedString("Grid/Table view mode", comment: "grid or table mode")
+        let title = NSLocalizedString("storage.viewModeButton", comment: "grid or table mode")
         button.setTitle(title, for: .normal)
         return button
     }()
@@ -74,9 +89,12 @@ class StorageViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
-        view.addSubview(viewModeButton)
-        view.addSubview(createFolderButton)
-        view.addSubview(addFileButton)
+        view.addSubview(stackView)
+        
+        stackView.addArrangedSubview(createFolderButton)
+        stackView.addArrangedSubview(addFileButton)
+        stackView.addArrangedSubview(filterButton)
+        stackView.addArrangedSubview(viewModeButton)
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -86,6 +104,7 @@ class StorageViewController: UIViewController {
         viewModeButton.addTarget(self, action: #selector(viewModeTapped), for: .touchUpInside)
         createFolderButton.addTarget(self, action: #selector(createFolderTapped), for: .touchUpInside)
         addFileButton.addTarget(self, action: #selector(addFileTapped), for: .touchUpInside)
+        filterButton.addTarget(self, action: #selector(filterTapped), for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -94,19 +113,10 @@ class StorageViewController: UIViewController {
             make.bottom.left.right.equalToSuperview()
         }
         
-        viewModeButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(createFolderButton.snp.top).offset(-10)
-        }
-        
-        createFolderButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(addFileButton.snp.top).offset(-10)
-        }
-        
-        addFileButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(40)
+        stackView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(150)
         }
     }
     
@@ -191,6 +201,30 @@ class StorageViewController: UIViewController {
     
     @objc private func viewModeTapped() {
         viewModel.switchViewMode()
+    }
+    
+    @objc private func filterTapped() {
+        // should have placed the logic below somewhere else
+        let title = NSLocalizedString("storage.filter.title", comment: "title")
+        let messageTitle = NSLocalizedString("storage.filter.message", comment: "message")
+        let alertController = UIAlertController(title: title, message: messageTitle, preferredStyle: .alert)
+        let okTitle = NSLocalizedString("app.set", comment: "set")
+        alertController.addAction(UIAlertAction(title: okTitle, style: .default, handler: { alert -> Void in
+            let textField = alertController.textFields![0] as UITextField
+            if let text = textField.text, !text.isEmpty {
+                self.viewModel.filtersByExtension = text
+                self.viewModel.refresh()
+            } else {
+                self.viewModel.filtersByExtension = nil
+                self.viewModel.refresh()
+            }
+        }))
+        let cancelTitle = NSLocalizedString("app.cancel", comment: "cancel")
+        alertController.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: nil))
+        alertController.addTextField { textField in
+            textField.placeholder = NSLocalizedString("storage.filter.placeholder", comment: "extension")
+        }
+        present(alertController, animated: true)
     }
 }
 

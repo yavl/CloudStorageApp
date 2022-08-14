@@ -8,7 +8,7 @@
 import Foundation
 
 protocol StorageService {
-    func list(path: String, completion: @escaping ([StorageItem], Error?) -> Void)
+    func list(path: String, completion: @escaping ([StorageItem], Error?) -> Void, filterByExtension: String?)
     func createFolder(path: String, completion: @escaping (_ success: Bool) -> Void)
     func upload(filePath: String, to path: String, completion: @escaping (_ success: Bool) -> Void)
     func rename()

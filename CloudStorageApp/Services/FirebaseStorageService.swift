@@ -14,7 +14,7 @@ class FirebaseStorageService: StorageService {
     
     private let storage = Storage.storage()
     
-    func list(path: String = "", completion: @escaping ([StorageItem], Error?) -> Void) {
+    func list(path: String = "", completion: @escaping ([StorageItem], Error?) -> Void, filterByExtension: String? = nil) {
         let storageRef = storage.reference().child("\(env.profile.uid)/\(path)")
         storageRef.listAll { result, error in
             if let error = error {
@@ -29,6 +29,11 @@ class FirebaseStorageService: StorageService {
             }
             for item in result.items {
                 guard item.name != ".dummy.txt" else { continue }
+                if let filterByExtension = filterByExtension?.lowercased() {
+                    if let fileExtension = item.name.split(separator: ".").last?.lowercased() {
+                        guard filterByExtension.contains(fileExtension) else { continue }
+                    }
+                }
                 items.append(StorageItem(name: item.name, path: item.fullPath))
             }
             completion(items, nil)

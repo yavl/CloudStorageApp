@@ -8,6 +8,7 @@
 
 app.cancel = "Cancel";
 app.create = "Create";
+app.set = "Set";
 
 welcome.message = "CloudStorageApp - an app for storing and managing files in the cloud service.";
 welcome.loginButton = "Sign in";
@@ -28,9 +29,14 @@ register.registerButton = "Sign up";
 storage.title = "Storage";
 storage.createFolderButton = "Create folder";
 storage.addFileButton = "Upload file";
+storage.viewModeButton = "View mode (table/grid)";
+storage.filterButton = "Filter by extension";
 storage.createFolder.title = "Create folder";
 storage.createFolder.message = "Enter new folder name";
 storage.createFolder.placeholder = "Folder name";
 storage.rename = "Rename";
 storage.delete = "Delete";
 storage.createFolder.alert = "Can't create subdirectory, go to root folder";
+storage.filter.title = "Filter by extension";
+storage.filter.message = "Set extension to filter, empty textfield to remove filter";
+storage.filter.placeholder = "Extension (e.g 'txt')";
